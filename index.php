@@ -81,47 +81,27 @@
 
         <!-- Footer -->
         <section id="footer">
-            <div class="container">
-                <header>
-                    <h2>Questions or comments? <strong>Get in touch:</strong></h2>
-                </header>
-                <form method="POST" class="bg-light p-5 contact-form">
-                    <div class="form-group">
-                        <input name="prenom" required type="text" class="form-control" placeholder="Prénom">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" required cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary py-3 px-5" type="submit" name="save">Save</button>
-                    </div>
-                </form>
-
-                <?php
-                session_start();
-                if (isset($_POST['prenom'])) {
-                    // Gestion des cookies
-                    $cookie_name = "user_name";
-                    $cookie_value = $_POST['prenom'];
-                    setcookie($cookie_name, $cookie_value, time() + 3600, "/");
-
-                    // Gestion des sessions
-                    $_SESSION['success'] = 'Formulaire envoyé avec succès !';
-                }
-
-                // Affichage des cookies
-                if (isset($_COOKIE['user_name'])) {
-                    echo '<p>Bienvenue de retour, ' . htmlspecialchars($_COOKIE['user_name']) . '!</p>';
-                }
-
-                // Affichage des messages de session
-                if (isset($_SESSION['success'])) {
-                    echo '<p style="color: green;">' . $_SESSION['success'] . '</p>';
-                    unset($_SESSION['success']);
-                }
-                ?>
+    <div class="container">
+        <header>
+            <h2>Questions ou commentaires ? <strong>Contactez-nous :</strong></h2>
+        </header>
+        <form method="POST" action="sendmail.php" class="bg-light p-5 contact-form">
+            <div class="form-group">
+                <input name="prenom" required type="text" class="form-control" placeholder="Prénom">
             </div>
-        </section>
+            <div class="form-group">
+                <input name="email" required type="email" class="form-control" placeholder="Votre Email">
+            </div>
+            <div class="form-group">
+                <textarea name="message" required cols="30" rows="7" class="form-control" placeholder="Votre Message"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary py-3 px-5" type="submit" name="send_email">Envoyer un email</button>
+            </div>
+        </form>
+    </div>
+</section>
+
     </div>
 
     <!-- Scripts -->
